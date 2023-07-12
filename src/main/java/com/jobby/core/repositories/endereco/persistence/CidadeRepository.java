@@ -1,4 +1,4 @@
-package com.jobby.core.repositories.endereco;
+package com.jobby.core.repositories.endereco.persistence;
 
 import com.jobby.core.models.entities.endereco.Cidade;
 import com.jobby.core.models.entities.endereco.Endereco;

@@ -1,4 +1,4 @@
-package com.jobby.core.repositories.endereco;
+package com.jobby.core.repositories.endereco.http;
 
 import com.jobby.core.models.dtos.endereco.EnderecoDto;
 
