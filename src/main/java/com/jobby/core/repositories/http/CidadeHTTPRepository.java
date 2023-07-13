@@ -1,4 +1,4 @@
-package com.jobby.core.repositories.endereco.http;
+package com.jobby.core.repositories.http;
 
 import com.jobby.core.models.dtos.endereco.CidadeDto;
 
