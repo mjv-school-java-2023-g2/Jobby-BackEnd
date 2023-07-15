@@ -1,5 +1,6 @@
 package com.jobby.core.models.entities.candidato;
 
+
 import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.models.entities.profissao.Profissao;
 

@@ -1,10 +1,8 @@
 package com.jobby.infra.services.endereco.cidade;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.jobby.core.models.dtos.CidadeDto;
-import com.jobby.core.models.dtos.EnderecoDto;
-import com.jobby.core.models.entities.endereco.Cidade;
-import com.jobby.core.repository.endereco.CidadeHTTPRepository;
+import com.jobby.core.models.dtos.endereco.CidadeDto;
+import com.jobby.core.repositories.http.CidadeHTTPRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

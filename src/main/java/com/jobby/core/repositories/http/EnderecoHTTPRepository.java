@@ -1,6 +1,6 @@
-package com.jobby.core.repository.endereco;
+package com.jobby.core.repositories.http;
 
-import com.jobby.core.models.dtos.EnderecoDto;
+import com.jobby.core.models.dtos.endereco.EnderecoDto;
 
 
 public interface EnderecoHTTPRepository {

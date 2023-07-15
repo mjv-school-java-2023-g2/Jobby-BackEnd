@@ -1,13 +1,8 @@
 package com.jobby;
 
-import com.jobby.core.models.dtos.EnderecoDto;
-import com.jobby.core.models.entities.endereco.Cidade;
-import com.jobby.core.models.entities.endereco.Endereco;
-import com.jobby.core.repository.endereco.CidadeHTTPRepository;
-import com.jobby.core.repository.endereco.EnderecoHTTPRepository;
+import com.jobby.core.models.dtos.endereco.EnderecoDto;
 import com.jobby.core.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

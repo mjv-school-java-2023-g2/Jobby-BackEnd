@@ -1,13 +1,12 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.dtos.endereco;
 
 import com.jobby.core.models.entities.endereco.Cidade;
-import jakarta.persistence.Id;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 @Builder
-@Getter
+@Data
 public class CidadeDto {
     private Integer id;
     private String nome;

@@ -1,6 +1,6 @@
 package com.jobby.infra.services.endereco;
 
-import com.jobby.core.models.dtos.EnderecoDto;
+import com.jobby.core.models.dtos.endereco.EnderecoDto;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

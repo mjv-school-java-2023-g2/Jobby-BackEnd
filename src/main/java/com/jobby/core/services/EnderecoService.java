@@ -1,12 +1,11 @@
 package com.jobby.core.services;
 
-import com.jobby.core.models.dtos.CidadeDto;
-import com.jobby.core.models.dtos.EnderecoDto;
+import com.jobby.core.models.dtos.endereco.EnderecoDto;
 import com.jobby.core.models.entities.endereco.Cidade;
 import com.jobby.core.models.entities.endereco.Endereco;
-import com.jobby.core.repository.endereco.CidadeHTTPRepository;
-import com.jobby.core.repository.endereco.CidadeRepository;
-import com.jobby.core.repository.endereco.EnderecoHTTPRepository;
+import com.jobby.core.repositories.http.CidadeHTTPRepository;
+import com.jobby.core.repositories.persistence.CidadeRepository;
+import com.jobby.core.repositories.http.EnderecoHTTPRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

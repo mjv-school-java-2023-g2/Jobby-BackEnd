@@ -1,18 +1,13 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.dtos.endereco;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import com.jobby.core.models.entities.endereco.Cidade;
 import com.jobby.core.models.entities.endereco.Endereco;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.BeanUtils;
 
-@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class EnderecoDto {
     private Integer id;
     private String cep;
