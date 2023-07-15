@@ -6,6 +6,8 @@ import com.jobby.core.models.entities.profissao.Profissao;
 
 import java.time.LocalDate;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
