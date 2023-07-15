@@ -1,7 +1,9 @@
 package com.jobby.core.models.entities.candidato;
 
+
 import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.models.entities.pretencao_salarial.PretencaoSalarial;
+import com.jobby.core.models.entities.profissao.Profissao;
 
 import java.time.LocalDate;
 
@@ -50,4 +52,8 @@ public class Candidato {
 
     @Embedded
     private PretencaoSalarial pretencaoSalarial;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Profissao profissao;
+
 }
