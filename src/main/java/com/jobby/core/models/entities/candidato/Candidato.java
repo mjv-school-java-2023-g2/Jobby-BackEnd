@@ -26,46 +26,27 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_candidato")
 @Entity
 public class Candidato {
-  
-    @NotEmpty(message = "Telefone é obrigatório")
-    @Size(min = 10, max = 10, message = "O telefone deve conter exatamente caracteres numéricos incluindo o DDD")
-    private Long telefone;
-
     @Embedded
-    private Telefone profissional;
-
-    @Embedded
-    private Telefone pessoal;
-
+    private Telefone telefone;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @NotEmpty(message = "Nome é obrigatório")
     @Size(max = 100, message = "Nome não pode exceder 100 caracteres")
     private String nome;
-
     @NotEmpty(message = "CPF é obrigatório")
     @Size(min = 11, max = 11, message = "CPF deve conter exatamente 11 caracteres numéricos")
     private String cpf;
-
     @Past(message = "A data de nascimento precisa ser no passado")
     private LocalDate nascimento;
-
-    // TODO: telefone
-
     @NotEmpty(message = "O e-mail é obrigatório")
     @Email(message = "Formato de e-mail inválido")
     private String email;
-
-    // TODO: SexoEnum
-    
+    Sexo sexo;
     @ManyToOne(cascade = CascadeType.MERGE)
     private Endereco endereco;
-
     @Embedded
     private PretencaoSalarial pretencaoSalarial;
-
     @ManyToOne(cascade = CascadeType.MERGE)
     private Profissao profissao;
 }
