@@ -1,4 +1,4 @@
-package com.jobby.core.models.entities.telefone;
+package com.jobby.core.models.entities.candidato;
 
 public enum TipoTelefone {
     TRABALHO, PESSOAL

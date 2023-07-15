@@ -1,7 +1,8 @@
-package com.jobby.core.models.entities.pretencao_salarial;
+package com.jobby.core.models.entities.candidato;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Embeddable
 public class PretencaoSalarial {
+    @NotBlank
     private Double minimo;
+    @NotBlank
     private Double maximo;
 }

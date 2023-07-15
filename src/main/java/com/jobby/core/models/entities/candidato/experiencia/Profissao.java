@@ -1,4 +1,4 @@
-package com.jobby.core.models.entities.experiencia;
+package com.jobby.core.models.entities.candidato.experiencia;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

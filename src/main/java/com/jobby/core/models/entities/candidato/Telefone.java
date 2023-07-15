@@ -1,7 +1,6 @@
-package com.jobby.core.models.entities.telefone;
+package com.jobby.core.models.entities.candidato;
 
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
