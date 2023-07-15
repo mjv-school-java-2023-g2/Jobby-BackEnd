@@ -1,9 +1,11 @@
 package com.jobby.core.models.entities.candidato;
 
 
+
 import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.models.entities.pretencao_salarial.PretencaoSalarial;
 import com.jobby.core.models.entities.profissao.Profissao;
+import com.jobby.core.models.entities.telefone.Telefone;
 
 import java.time.LocalDate;
 
@@ -24,6 +26,17 @@ import lombok.NoArgsConstructor;
 @Table(name = "tb_candidato")
 @Entity
 public class Candidato {
+  
+    @NotEmpty(message = "Telefone é obrigatório")
+    @Size(min = 10, max = 10, message = "O telefone deve conter exatamente caracteres numéricos incluindo o DDD")
+    private Long telefone;
+
+    @Embedded
+    private Telefone profissional;
+
+    @Embedded
+    private Telefone pessoal;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -55,5 +68,4 @@ public class Candidato {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     private Profissao profissao;
-
 }
