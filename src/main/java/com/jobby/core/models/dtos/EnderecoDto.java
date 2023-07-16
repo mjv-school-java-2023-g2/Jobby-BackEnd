@@ -1,4 +1,4 @@
-package com.jobby.core.models.dtos.endereco;
+package com.jobby.core.models.dtos;
 
 import com.jobby.core.models.entities.endereco.Endereco;
 import lombok.*;

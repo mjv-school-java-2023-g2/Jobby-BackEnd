@@ -47,7 +47,7 @@ public class Candidato {
     private Telefone telefone;
     @Column(name = "sexo")
     @Enumerated(EnumType.STRING)
-    Sexo sexo;
+    private Sexo sexo;
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     @Embedded

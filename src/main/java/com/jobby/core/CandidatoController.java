@@ -1,5 +1,6 @@
 package com.jobby.core;
 
+import com.jobby.core.models.dtos.CandidatoDto;
 import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.services.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class CandidatoController {
     CandidatoService candidatoService;
 
     @PostMapping("/jobby/v1/candidatos")
-    public ResponseEntity<Candidato> saveCandidato(@RequestBody Candidato candidato){
-        return ResponseEntity.ok(candidatoService.saveCandidato(candidato));
+    public ResponseEntity<Candidato> saveCandidato(@RequestBody CandidatoDto CandidatoDto){
+        return ResponseEntity.ok(candidatoService.saveCandidato(CandidatoDto));
     }
 }

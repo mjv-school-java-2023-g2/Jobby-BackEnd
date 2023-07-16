@@ -1,6 +1,6 @@
 package com.jobby;
 
-import com.jobby.core.models.dtos.endereco.EnderecoDto;
+import com.jobby.core.models.dtos.EnderecoDto;
 import com.jobby.core.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
