@@ -1,6 +1,6 @@
 package com.jobby.core.services;
 
-import com.jobby.core.models.dtos.endereco.EnderecoDto;
+import com.jobby.core.models.dtos.EnderecoDto;
 import com.jobby.core.models.entities.endereco.Cidade;
 import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.repositories.http.CidadeHTTPRepository;

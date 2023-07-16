@@ -9,6 +9,7 @@ CREATE TABLE candidato
     telefone_is_whatsapp      BOOLEAN,
     telefone_tipo             VARCHAR,
     sexo                      VARCHAR,
+    status                    BOOLEAN,
     pretencao_salarial_minimo DECIMAL,
     pretencao_salarial_maximo DECIMAL,
     endereco_id               INTEGER,

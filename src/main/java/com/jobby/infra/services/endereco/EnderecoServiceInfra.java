@@ -1,7 +1,7 @@
 package com.jobby.infra.services.endereco;
 
 import com.jobby.core.exceptions.EnderecoInvalidoException;
-import com.jobby.core.models.dtos.endereco.EnderecoDto;
+import com.jobby.core.models.dtos.EnderecoDto;
 import com.jobby.core.repositories.http.EnderecoHTTPRepository;
 import org.springframework.stereotype.Service;
 

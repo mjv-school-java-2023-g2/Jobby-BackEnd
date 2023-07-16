@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
@@ -32,7 +33,7 @@ public class Candidato {
     @Column(name = "nome")
     private String nome;
     @NotBlank(message = "CPF é obrigatório")
-    @Size(min = 11, max = 11, message = "CPF deve conter exatamente 11 caracteres numéricos")
+    @CPF
     @Column(name = "cpf")
     private String cpf;
     @Past(message = "A data de nascimento precisa ser no passado")
@@ -47,7 +48,9 @@ public class Candidato {
     private Telefone telefone;
     @Column(name = "sexo")
     @Enumerated(EnumType.STRING)
-    Sexo sexo;
+    private Sexo sexo;
+    @Column(name = "status")
+    private boolean status = true;
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     @Embedded
