@@ -22,6 +22,7 @@ public class Vaga {
     
     @NotBlank(message = "Nome é obrigatório")
     @Size(max = 100, message = "Nome não pode exceder 100 caracteres")
+    @Column(name = "nome")
     private String nome;
 
     @ManyToOne(cascade = CascadeType.MERGE)
