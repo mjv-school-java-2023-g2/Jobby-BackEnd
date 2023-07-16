@@ -11,20 +11,24 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_endereco")
 @Entity
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotBlank
+    @Column(name = "cep")
     private String cep;
+    @Column(name = "logradouro")
     private String logradouro;
     @NotBlank
+    @Column(name = "numero")
     private String numero;
     @NotBlank
+    @Column(name = "complemento")
     private String complemento;
+    @Column(name = "bairro")
     private String bairro;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Cidade cidade;
 }
