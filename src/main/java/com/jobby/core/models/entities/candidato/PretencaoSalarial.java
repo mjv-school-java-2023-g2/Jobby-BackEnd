@@ -1,5 +1,6 @@
 package com.jobby.core.models.entities.candidato;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,7 +18,9 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class PretencaoSalarial {
     @NotBlank
-    private Double minimo;
+    @Column(name = "pretencao_salarial_minimo")
+    private BigDecimal minimo;
     @NotBlank
-    private Double maximo;
+    @Column(name = "pretencao_salarial_maximo")
+    private BigDecimal maximo;
 }
