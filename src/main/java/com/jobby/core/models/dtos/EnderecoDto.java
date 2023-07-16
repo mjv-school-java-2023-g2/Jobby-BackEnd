@@ -1,4 +1,4 @@
-package com.jobby.core.models.dtos.endereco;
+package com.jobby.core.models.dtos;
 
 import com.jobby.core.models.entities.endereco.Endereco;
 import lombok.*;
@@ -19,6 +19,10 @@ public class EnderecoDto {
     private String localidade;
     private String uf;
     private String sigla;
+
+    public EnderecoDto(Endereco endereco){
+        BeanUtils.copyProperties(endereco, this);
+    }
 
     public Endereco toEndereco(){
         Endereco endereco = new Endereco();

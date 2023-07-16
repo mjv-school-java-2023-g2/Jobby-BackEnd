@@ -1,40 +1,36 @@
 package com.jobby.core.services;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
+import com.jobby.core.models.dtos.CandidatoDto;
+import com.jobby.core.models.dtos.EnderecoDto;
 import com.jobby.core.models.entities.candidato.Candidato;
-import com.jobby.core.models.entities.candidato.experiencia.Profissao;
+import com.jobby.core.models.entities.endereco.Endereco;
+import com.jobby.core.repositories.persistence.CandidatoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CandidatoService {
+    @Autowired
+    EnderecoService enderecoService;
+    @Autowired
+    CandidatoRepository candidatoRepository;
 
-    public Candidato getCandidatoById(Long id) {
-        return null;
+    public Candidato saveCandidato(CandidatoDto candidatoDto){
+        Candidato candidato = enderecoFactory(candidatoDto);
+
+        candidatoRepository.save(candidato);
+
+        return candidato;
     }
 
-    public Candidato createCandidato(Candidato candidato) {
-        return null;
-    }
+    private Candidato enderecoFactory(CandidatoDto candidatoDto){
+        Endereco endereco = enderecoService
+                .findEndereco(candidatoDto.getEndereco());
 
-    public Candidato updateCandidato(Long id, Candidato candidato) {
-        return null;
-    }
+        Candidato candidato = candidatoDto.toCandidato();
 
-    public boolean deleteCandidato(Long id) {
-        return false;
-    }
+        candidato.setEndereco(endereco);
 
-    public List<Candidato> getAllCandidatos() {
-        return null;
+        return candidato;
     }
-
-    public boolean save(Candidato request) {
-        return true;
-    }
-
-    public void update(Integer id, Candidato request) {
-    }
-        
 }
