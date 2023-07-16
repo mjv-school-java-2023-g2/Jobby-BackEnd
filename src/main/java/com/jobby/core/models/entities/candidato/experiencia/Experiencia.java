@@ -1,5 +1,6 @@
 package com.jobby.core.models.entities.candidato.experiencia;
 
+import com.jobby.core.models.enuns.Regime;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "tb_experiencia")
 public class Experiencia {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +26,16 @@ public class Experiencia {
     @ManyToOne(cascade = CascadeType.ALL)
     private Profissao profissao;
     @NotBlank
+    @Column(name = "salario")
     private BigDecimal salario;
     @NotBlank
     @Column(name = "emprego_atual")
     private boolean empregoAtual;
     @NotBlank
+    @Column(name = "regime_trabalho")
     private Regime regime;
     @NotBlank
+    @Column(name = "empresa")
     private String empresa;
 
 }
