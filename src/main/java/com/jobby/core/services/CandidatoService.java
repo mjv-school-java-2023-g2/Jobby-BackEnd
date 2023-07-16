@@ -5,7 +5,6 @@ import com.jobby.core.models.dtos.CandidatoDto;
 import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.repositories.persistence.CandidatoRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,9 +40,10 @@ public class CandidatoService {
                .collect(Collectors.toList());
     }
 
-    private Candidato enderecoFactory(Candidato candidato){
+    private Candidato enderecoFactory(CandidatoDto candidatoDto){
         Endereco endereco = enderecoService
-                .findEndereco(new EnderecoDto(candidato.getEndereco()));
+                .findEndereco(candidatoDto.getEndereco());
+        Candidato candidato = candidatoDto.toCandidato();
 
         candidato.setEndereco(endereco);
 
