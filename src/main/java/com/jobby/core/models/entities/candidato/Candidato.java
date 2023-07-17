@@ -6,7 +6,6 @@ import com.jobby.core.models.entities.candidato.experiencia.Profissao;
 import com.jobby.core.models.entities.endereco.Endereco;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 import com.jobby.core.models.enuns.Sexo;

@@ -4,7 +4,6 @@ import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.models.entities.candidato.PretencaoSalarial;
 import com.jobby.core.models.entities.candidato.Telefone;
 import com.jobby.core.models.entities.candidato.experiencia.Profissao;
-import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.models.enuns.Sexo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
