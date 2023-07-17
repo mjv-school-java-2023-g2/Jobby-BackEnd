@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("jobby/v1/experiencias")
@@ -32,25 +33,16 @@ public class ExperienciaController {
     }
 
     @GetMapping( "/{id}")
-    public ResponseEntity<ExperienciaResponse> getExperienciasById(@PathVariable("id") Integer candidatoId){
+    public ResponseEntity<List<ExperienciaResponse>> getExperienciasById(@PathVariable("id") Integer candidatoId){
         return ResponseEntity.ok(experienciaService.getAllById(candidatoId));
     }
 
-    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ExperienciaResponse> updateExperiencia(@RequestBody ExperienciaRequest request,
-                                                                 @PathVariable("id") Integer id
-    ){
-        ExperienciaResponse response = experienciaService.update(request, id);
-
-        return ResponseEntity.ok(response);
-    }
-
     @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ExperienciaResponse> deleteExperiencia(
+    public ResponseEntity<List<ExperienciaResponse>> deleteExperiencia(
             @RequestParam("candidatoId") Integer candidatoId,
             @RequestParam("experienciaId") Integer experienciaId
     ){
-        ExperienciaResponse response = experienciaService.delete(candidatoId, experienciaId);
+        List<ExperienciaResponse> response = experienciaService.delete(candidatoId, experienciaId);
 
         return ResponseEntity.ok(response);
     }

@@ -12,6 +12,9 @@ import com.jobby.core.repositories.persistence.ProfissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ExperienciaService {
 
@@ -47,20 +50,20 @@ public class ExperienciaService {
 
     }
 
-    public ExperienciaResponse delete(Integer candidatoId, Integer experienciaId) {
+    public List<ExperienciaResponse> delete(Integer candidatoId, Integer experienciaId) {
         experienciaRepository.deleteById(experienciaId);
         return getExperiencias(candidatoId);
     }
 
-    public ExperienciaResponse getAllById(Integer id) {
+    public List<ExperienciaResponse> getAllById(Integer id) {
        return getExperiencias(id);
     }
 
-    private ExperienciaResponse getExperiencias(Integer candidatoId){
-        return new ExperienciaResponse(
-                experienciaRepository.findAllByCandidatoId(candidatoId)
-                        .orElseThrow(() -> new NotFoundException("experiencia not found"))
-        );
+    private List<ExperienciaResponse> getExperiencias(Integer candidatoId){
+        return experienciaRepository.findAllByCandidatoId(candidatoId)
+                .stream()
+                .map(ExperienciaResponse::new)
+                .collect(Collectors.toList());
     }
 
     private Profissao findProfissao(Profissao profissao){
