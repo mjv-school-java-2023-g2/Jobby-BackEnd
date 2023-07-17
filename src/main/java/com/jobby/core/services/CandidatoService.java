@@ -63,7 +63,6 @@ public class CandidatoService {
     private Candidato enderecoFactory(CandidatoDto candidatoDto){
         Endereco endereco = enderecoService
                 .findEndereco(candidatoDto.getEndereco());
-
         Candidato candidato = candidatoDto.toCandidato();
 
         candidato.setEndereco(endereco);
