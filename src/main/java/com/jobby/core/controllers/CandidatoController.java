@@ -8,14 +8,7 @@ import com.jobby.core.models.responses.CandidatoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jobby.core.services.CandidatoService;
 
@@ -67,6 +60,18 @@ public class CandidatoController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/filters")
+    public ResponseEntity<List<CandidatoResponse>> getCandidatoByCpf(
+            @RequestParam("cargo") String cargo,
+            @RequestParam("tempo") Integer tempo
+    ){
+        List<CandidatoResponse> response = candidatoService
+                .getByExperienciaAndCargo(cargo, tempo);
+
+        return ResponseEntity.ok(response);
+    }
+
 
     @DeleteMapping(value = "/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> deleteCandidato(@PathVariable("cpf") String cpf) {

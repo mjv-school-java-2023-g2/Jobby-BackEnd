@@ -1,11 +1,14 @@
 package com.jobby.core.services;
 
 import com.jobby.core.exceptions.NotFoundException;
+import com.jobby.core.models.entities.candidato.experiencia.Profissao;
 import com.jobby.core.models.requests.ExperienciaRequest;
 import com.jobby.core.models.entities.candidato.experiencia.Experiencia;
+import com.jobby.core.models.requests.ProfissaoRequest;
 import com.jobby.core.models.responses.ExperienciaResponse;
 import com.jobby.core.repositories.persistence.CandidatoRepository;
 import com.jobby.core.repositories.persistence.ExperienciaRepository;
+import com.jobby.core.repositories.persistence.ProfissaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,17 +19,21 @@ public class ExperienciaService {
     ExperienciaRepository experienciaRepository;
     @Autowired
     CandidatoRepository candidatoRepository;
+    @Autowired
+    ProfissaoRepository profissaoRepository;
 
     public ExperienciaResponse add(ExperienciaRequest experienciaRequest){
 
         if (candidatoRepository.findById(experienciaRequest.getCandidatoId()).isEmpty()) {
             throw new IllegalArgumentException();
         }
+        Profissao profissao = findProfissao(experienciaRequest.getProfissao());
 
-        Experiencia experiencia = experienciaRepository
-                .save(experienciaRequest.toExperiencia());
+        Experiencia experiencia = experienciaRequest.toExperiencia();
 
-        return new ExperienciaResponse(experiencia);
+        experiencia.setProfissao(profissao);
+
+        return new ExperienciaResponse(experienciaRepository.save(experiencia));
     }
 
     public ExperienciaResponse update(ExperienciaRequest experienciaRequest, Integer id) {
@@ -54,5 +61,10 @@ public class ExperienciaService {
                 experienciaRepository.findAllByCandidatoId(candidatoId)
                         .orElseThrow(() -> new NotFoundException("experiencia not found"))
         );
+    }
+
+    private Profissao findProfissao(Profissao profissao){
+        return profissaoRepository.findByNome(profissao.getNome())
+                .orElse(profissao);
     }
 }

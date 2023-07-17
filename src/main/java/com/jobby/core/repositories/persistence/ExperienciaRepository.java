@@ -1,5 +1,6 @@
 package com.jobby.core.repositories.persistence;
 
+import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.models.entities.candidato.experiencia.Experiencia;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,4 +10,5 @@ public interface ExperienciaRepository extends JpaRepository<Experiencia, Intege
     Optional<Experiencia> findByCandidatoId(Integer candidatoId);
 
     Optional<Experiencia> findAllByCandidatoId(Integer candidatoId);
+
 }
