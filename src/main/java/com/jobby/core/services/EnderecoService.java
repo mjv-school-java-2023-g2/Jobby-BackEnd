@@ -1,6 +1,6 @@
 package com.jobby.core.services;
 
-import com.jobby.core.models.dtos.EnderecoDto;
+import com.jobby.core.models.requests.EnderecoRequest;
 import com.jobby.core.models.entities.endereco.Cidade;
 import com.jobby.core.models.entities.endereco.Endereco;
 import com.jobby.core.repositories.http.CidadeHTTPRepository;
@@ -19,14 +19,14 @@ public class EnderecoService {
     @Autowired
     CidadeRepository cidadeRepository;
 
-    public Endereco findEndereco(EnderecoDto enderecoDto){
+    public Endereco findEndereco(EnderecoRequest enderecoRequest){
 
-       enderecoDto = enderecoHTTPRepository
-               .findEndereco(enderecoDto);
+       enderecoRequest = enderecoHTTPRepository
+               .findEndereco(enderecoRequest);
 
-       Cidade cidade = findCidade(enderecoDto.getIbge());
+       Cidade cidade = findCidade(enderecoRequest.getIbge());
 
-       Endereco endereco = enderecoDto.toEndereco();
+       Endereco endereco = enderecoRequest.toEndereco();
        endereco.setCidade(cidade);
        return endereco;
     }

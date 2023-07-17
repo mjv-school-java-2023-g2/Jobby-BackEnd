@@ -1,4 +1,4 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.requests;
 
 import com.jobby.core.models.entities.endereco.Cidade;
 import lombok.Builder;
@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 
 @Builder
 @Data
-public class CidadeDto {
+public class CidadeRequest {
     private Integer id;
     private String nome;
     private String estado;

@@ -1,9 +1,10 @@
 package com.jobby.core.services;
 
 import com.jobby.core.exceptions.NotFoundException;
-import com.jobby.core.models.dtos.CandidatoDto;
+import com.jobby.core.models.requests.CandidatoRequest;
 import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.models.entities.endereco.Endereco;
+import com.jobby.core.models.responses.CandidatoResponse;
 import com.jobby.core.repositories.persistence.CandidatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,32 +19,32 @@ public class CandidatoService {
     @Autowired
     CandidatoRepository candidatoRepository;
 
-    public CandidatoDto save(CandidatoDto candidatoDto){
+    public CandidatoResponse save(CandidatoRequest candidatoRequest){
 
         if (candidatoRepository.
-                findByCpf(candidatoDto.getCpf()).isPresent()) {
+                findByCpf(candidatoRequest.getCpf()).isPresent()) {
             throw new IllegalArgumentException();
         }
 
-        Candidato candidato = enderecoFactory(candidatoDto);
+        Candidato candidato = enderecoFactory(candidatoRequest);
 
         candidatoRepository.save(candidato);
 
-        return new CandidatoDto(candidato);
+        return new CandidatoResponse(candidato);
     }
 
-    public CandidatoDto update(String cpf, CandidatoDto request) {
+    public CandidatoResponse update(String cpf, CandidatoRequest request) {
        return candidatoRepository.findByCpf(cpf).map( candidato -> {
             candidato = enderecoFactory(request);
             candidatoRepository.save(candidato);
-            return new CandidatoDto(candidato);
+            return new CandidatoResponse(candidato);
         }).orElseThrow(() -> new NotFoundException("cpf not found"));
     }
 
-    public List<CandidatoDto> getAll(){
+    public List<CandidatoResponse> getAll(){
        return candidatoRepository.findAll().stream()
                .filter(Candidato::isStatus)
-               .map(CandidatoDto::new)
+               .map(CandidatoResponse::new)
                .collect(Collectors.toList());
     }
 
@@ -54,16 +55,16 @@ public class CandidatoService {
          }).orElse(false);
     }
 
-    public CandidatoDto getByCpf(String cpf) {
+    public CandidatoResponse getByCpf(String cpf) {
         return candidatoRepository.findByCpf(cpf)
-                .map(CandidatoDto::new)
+                .map(CandidatoResponse::new)
                 .orElseThrow(() -> new NotFoundException("Candidato não existe"));
     }
 
-    private Candidato enderecoFactory(CandidatoDto candidatoDto){
+    private Candidato enderecoFactory(CandidatoRequest candidatoRequest){
         Endereco endereco = enderecoService
-                .findEndereco(candidatoDto.getEndereco());
-        Candidato candidato = candidatoDto.toCandidato();
+                .findEndereco(candidatoRequest.getEndereco());
+        Candidato candidato = candidatoRequest.toCandidato();
 
         candidato.setEndereco(endereco);
 

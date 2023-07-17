@@ -1,8 +1,9 @@
 package com.jobby.core.services;
 
 import com.jobby.core.exceptions.NotFoundException;
-import com.jobby.core.models.dtos.ExperienciaDto;
+import com.jobby.core.models.requests.ExperienciaRequest;
 import com.jobby.core.models.entities.candidato.experiencia.Experiencia;
+import com.jobby.core.models.responses.ExperienciaResponse;
 import com.jobby.core.repositories.persistence.CandidatoRepository;
 import com.jobby.core.repositories.persistence.ExperienciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,22 @@ public class ExperienciaService {
     @Autowired
     CandidatoRepository candidatoRepository;
 
-    public ExperienciaDto add(ExperienciaDto experienciaDto){
+    public ExperienciaResponse add(ExperienciaRequest experienciaRequest){
 
-        if (candidatoRepository.findById(experienciaDto.getCandidatoId()).isEmpty()) {
+        if (candidatoRepository.findById(experienciaRequest.getCandidatoId()).isEmpty()) {
             throw new IllegalArgumentException();
         }
 
         Experiencia experiencia = experienciaRepository
-                .save(experienciaDto.toExperiencia());
+                .save(experienciaRequest.toExperiencia());
 
-        return new ExperienciaDto(experiencia);
+        return new ExperienciaResponse(experiencia);
     }
 
-    public ExperienciaDto update(ExperienciaDto experienciaDto, Integer id) {
-        return new ExperienciaDto(experienciaRepository
+    public ExperienciaResponse update(ExperienciaRequest experienciaRequest, Integer id) {
+        return new ExperienciaResponse(experienciaRepository
                 .findById(id).map(experiencia -> {
-                    experiencia = experienciaDto.toExperiencia();
+                    experiencia = experienciaRequest.toExperiencia();
                     experienciaRepository.save(experiencia);
                     return experiencia;
                 }).orElseThrow(() -> new NotFoundException("experiencia not found"))
@@ -39,17 +40,17 @@ public class ExperienciaService {
 
     }
 
-    public ExperienciaDto delete(Integer candidatoId, Integer experienciaId) {
+    public ExperienciaResponse delete(Integer candidatoId, Integer experienciaId) {
         experienciaRepository.deleteById(experienciaId);
         return getExperiencias(candidatoId);
     }
 
-    public ExperienciaDto getAllById(Integer id) {
+    public ExperienciaResponse getAllById(Integer id) {
        return getExperiencias(id);
     }
 
-    private ExperienciaDto getExperiencias(Integer candidatoId){
-        return new ExperienciaDto(
+    private ExperienciaResponse getExperiencias(Integer candidatoId){
+        return new ExperienciaResponse(
                 experienciaRepository.findAllByCandidatoId(candidatoId)
                         .orElseThrow(() -> new NotFoundException("experiencia not found"))
         );

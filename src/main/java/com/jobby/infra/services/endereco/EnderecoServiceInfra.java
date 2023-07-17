@@ -1,25 +1,25 @@
 package com.jobby.infra.services.endereco;
 
 import com.jobby.core.exceptions.EnderecoInvalidoException;
-import com.jobby.core.models.dtos.EnderecoDto;
+import com.jobby.core.models.requests.EnderecoRequest;
 import com.jobby.core.repositories.http.EnderecoHTTPRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public abstract class EnderecoServiceInfra implements EnderecoHTTPRepository {
-    public EnderecoDto findEndereco(EnderecoDto enderecoDto) {
-        String numero = enderecoDto.getNumero();
-        String complemento = enderecoDto.getComplemento();
-        enderecoDto = restEndereco(enderecoDto);
-        if (enderecoDto.getLogradouro() == null){
+    public EnderecoRequest findEndereco(EnderecoRequest enderecoRequest) {
+        String numero = enderecoRequest.getNumero();
+        String complemento = enderecoRequest.getComplemento();
+        enderecoRequest = restEndereco(enderecoRequest);
+        if (enderecoRequest.getLogradouro() == null){
             throw new EnderecoInvalidoException("Cep inválido");
         }
 
-        enderecoDto.setNumero(numero);
-        enderecoDto.setComplemento(complemento);
+        enderecoRequest.setNumero(numero);
+        enderecoRequest.setComplemento(complemento);
 
-        return enderecoDto;
+        return enderecoRequest;
     }
 
-    abstract EnderecoDto restEndereco(EnderecoDto enderecoDto);
+    abstract EnderecoRequest restEndereco(EnderecoRequest enderecoRequest);
 }

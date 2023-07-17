@@ -1,7 +1,7 @@
 package com.jobby.infra.services.endereco.cidade;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.jobby.core.models.dtos.CidadeDto;
+import com.jobby.core.models.requests.CidadeRequest;
 import com.jobby.core.repositories.http.CidadeHTTPRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class IBGECidadeService implements CidadeHTTPRepository {
     @Override
-    public CidadeDto findCidade(Integer ibge) {
+    public CidadeRequest findCidade(Integer ibge) {
         RestTemplate restTemplate = new RestTemplate();
         JsonNode json = restTemplate
                 .getForObject(
@@ -19,7 +19,7 @@ public class IBGECidadeService implements CidadeHTTPRepository {
                 );
         JsonNode uf = json.path("regiao-imediata").path("regiao-intermediaria").path("UF");
 
-        return CidadeDto.builder()
+        return CidadeRequest.builder()
                 .id(ibge)
                 .nome(json.path("nome").asText())
                 .sigla(uf.path("sigla").asText())

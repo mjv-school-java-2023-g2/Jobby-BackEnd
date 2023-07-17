@@ -1,6 +1,7 @@
 package com.jobby.core.controllers;
 
-import com.jobby.core.models.dtos.ExperienciaDto;
+import com.jobby.core.models.requests.ExperienciaRequest;
+import com.jobby.core.models.responses.ExperienciaResponse;
 import com.jobby.core.services.ExperienciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,7 +18,7 @@ public class ExperienciaController {
     ExperienciaService experienciaService;
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> addExperiencia(@RequestBody ExperienciaDto request, URI uri) {
+    public ResponseEntity<String> addExperiencia(@RequestBody ExperienciaRequest request, URI uri) {
         experienciaService.add(request);
 
         return ResponseEntity
@@ -31,25 +32,25 @@ public class ExperienciaController {
     }
 
     @GetMapping( "/{id}")
-    public ResponseEntity<ExperienciaDto> getExperienciasById(@PathVariable("id") Integer candidatoId){
+    public ResponseEntity<ExperienciaResponse> getExperienciasById(@PathVariable("id") Integer candidatoId){
         return ResponseEntity.ok(experienciaService.getAllById(candidatoId));
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ExperienciaDto> updateExperiencia(@RequestBody ExperienciaDto request,
-                                                            @PathVariable("id") Integer id
+    public ResponseEntity<ExperienciaResponse> updateExperiencia(@RequestBody ExperienciaRequest request,
+                                                                 @PathVariable("id") Integer id
     ){
-        ExperienciaDto response = experienciaService.update(request, id);
+        ExperienciaResponse response = experienciaService.update(request, id);
 
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ExperienciaDto> deleteExperiencia(
+    public ResponseEntity<ExperienciaResponse> deleteExperiencia(
             @RequestParam("candidatoId") Integer candidatoId,
             @RequestParam("experienciaId") Integer experienciaId
     ){
-        ExperienciaDto response = experienciaService.delete(candidatoId, experienciaId);
+        ExperienciaResponse response = experienciaService.delete(candidatoId, experienciaId);
 
         return ResponseEntity.ok(response);
     }

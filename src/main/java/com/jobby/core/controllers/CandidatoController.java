@@ -3,7 +3,8 @@ package com.jobby.core.controllers;
 import java.net.URI;
 import java.util.List;
 
-import com.jobby.core.models.dtos.CandidatoDto;
+import com.jobby.core.models.requests.CandidatoRequest;
+import com.jobby.core.models.responses.CandidatoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class CandidatoController {
     private CandidatoService candidatoService;
 
     @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> post(@RequestBody CandidatoDto request, URI uri) {
+    public ResponseEntity<String> post(@RequestBody CandidatoRequest request, URI uri) {
         if (candidatoService.save(request) != null) {
             return ResponseEntity
                     .created(uri)
@@ -42,27 +43,27 @@ public class CandidatoController {
     }
    
     @PutMapping("/{cpf}")
-    public ResponseEntity<CandidatoDto> put(@PathVariable("cpf") String cpf,
-                                            @RequestBody CandidatoDto request
+    public ResponseEntity<CandidatoResponse> put(@PathVariable("cpf") String cpf,
+                                            @RequestBody CandidatoRequest request
     ){
 
-        CandidatoDto response = candidatoService.update(cpf,request);
+        CandidatoResponse response = candidatoService.update(cpf,request);
 
         return ResponseEntity.ok().body(response);
     }
     
     @GetMapping
-    public ResponseEntity<List<CandidatoDto>> getAll(){
+    public ResponseEntity<List<CandidatoResponse>> getAll(){
 
-        List<CandidatoDto> response = candidatoService.getAll();
+        List<CandidatoResponse> response = candidatoService.getAll();
 
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{cpf}")
-    public ResponseEntity<CandidatoDto> getCandidatoByCpf(@PathVariable("cpf") String cpf){
+    public ResponseEntity<CandidatoResponse> getCandidatoByCpf(@PathVariable("cpf") String cpf){
 
-        CandidatoDto response = candidatoService.getByCpf(cpf);
+        CandidatoResponse response = candidatoService.getByCpf(cpf);
 
         return ResponseEntity.ok(response);
     }

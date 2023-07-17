@@ -1,4 +1,4 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ProfissaoDto {
+public class ProfissaoRequest {
     private Integer id;
     private String nome;
 }

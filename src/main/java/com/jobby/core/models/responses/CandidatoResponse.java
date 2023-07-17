@@ -1,9 +1,8 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.responses;
 
 import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.models.entities.candidato.PretencaoSalarial;
 import com.jobby.core.models.entities.candidato.Telefone;
-import com.jobby.core.models.entities.candidato.experiencia.Profissao;
 import com.jobby.core.models.enuns.Sexo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,24 +17,22 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CandidatoDto {
+public class CandidatoResponse {
+    private Integer id;
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
     private String email;
     private Telefone telefone;
     private Sexo sexo;
-    private EnderecoDto endereco;
+    private EnderecoResponse endereco;
     private PretencaoSalarial pretencaoSalarial;
-    private Profissao profissao;
+    private ProfissaoResponse profissao;
     private Set<String> habilidades;
 
-    public CandidatoDto(Candidato candidato){
+    public CandidatoResponse(Candidato candidato) {
+        this.endereco = new EnderecoResponse(candidato.getEndereco());
+        this.profissao = new ProfissaoResponse(candidato.getProfissao());
         BeanUtils.copyProperties(candidato, this);
-    }
-    public Candidato toCandidato(){
-        Candidato candidato = new Candidato();
-        BeanUtils.copyProperties(this, candidato);
-        return candidato;
     }
 }
