@@ -1,4 +1,4 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.requests;
 
 import com.jobby.core.models.entities.endereco.Endereco;
 import lombok.*;
@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class EnderecoDto {
+public class EnderecoRequest {
     private Integer id;
     private String cep;
     private String logradouro;
@@ -19,10 +19,6 @@ public class EnderecoDto {
     private String localidade;
     private String uf;
     private String sigla;
-
-    public EnderecoDto(Endereco endereco){
-        BeanUtils.copyProperties(endereco, this);
-    }
 
     public Endereco toEndereco(){
         Endereco endereco = new Endereco();

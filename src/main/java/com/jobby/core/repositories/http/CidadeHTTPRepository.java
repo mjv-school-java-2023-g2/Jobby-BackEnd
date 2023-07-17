@@ -1,8 +1,8 @@
 package com.jobby.core.repositories.http;
 
-import com.jobby.core.models.dtos.CidadeDto;
+import com.jobby.core.models.requests.CidadeRequest;
 
 public interface CidadeHTTPRepository {
 
-    CidadeDto findCidade(Integer ibge);
+    CidadeRequest findCidade(Integer ibge);
 }

@@ -6,7 +6,6 @@ import com.jobby.core.models.entities.candidato.experiencia.Profissao;
 import com.jobby.core.models.entities.endereco.Endereco;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 import com.jobby.core.models.enuns.Sexo;
@@ -50,7 +49,7 @@ public class Candidato {
     @Enumerated(EnumType.STRING)
     private Sexo sexo;
     @Column(name = "status")
-    private boolean status = true;
+    private boolean status;
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     @Embedded

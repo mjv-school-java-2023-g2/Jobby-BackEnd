@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseBody
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class CandidatoNotFoundException extends RuntimeException{
-    public CandidatoNotFoundException(String message) {
+public class NotFoundException extends RuntimeException{
+    public NotFoundException(String message) {
         super(message);
     }
 }

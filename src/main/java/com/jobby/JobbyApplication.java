@@ -1,6 +1,6 @@
 package com.jobby;
 
-import com.jobby.core.models.dtos.EnderecoDto;
+import com.jobby.core.models.requests.EnderecoRequest;
 import com.jobby.core.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +19,7 @@ public class JobbyApplication {
 	@Bean
 	public CommandLineRunner demo() {
 		return (args) -> {
-			var enderecoDto = EnderecoDto.builder()
+			var enderecoDto = EnderecoRequest.builder()
 					.id(41)
 					.cep("22031000")
 					.numero("10")

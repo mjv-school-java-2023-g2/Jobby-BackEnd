@@ -1,31 +1,15 @@
 package com.jobby.core.controllers;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
-import com.jobby.core.models.dtos.CandidatoDto;
+import com.jobby.core.models.requests.CandidatoRequest;
+import com.jobby.core.models.responses.CandidatoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonComponent;
-import org.springframework.data.domain.Page;
-import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.jobby.core.models.entities.candidato.Candidato;
-import com.jobby.core.models.entities.candidato.experiencia.Profissao;
-import com.jobby.core.repositories.persistence.CandidatoRepository;
 import com.jobby.core.services.CandidatoService;
 
 @RestController
@@ -35,8 +19,8 @@ public class CandidatoController {
     private CandidatoService candidatoService;
 
     @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> post(@RequestBody CandidatoDto request, URI uri) {
-        if (candidatoService.saveCandidato(request) != null) {
+    public ResponseEntity<String> post(@RequestBody CandidatoRequest request, URI uri) {
+        if (candidatoService.save(request) != null) {
             return ResponseEntity
                     .created(uri)
                     .body("""
@@ -52,17 +36,50 @@ public class CandidatoController {
     }
    
     @PutMapping("/{cpf}")
-    public ResponseEntity<CandidatoDto> put(@PathVariable("cpf") String cpf, @RequestBody CandidatoDto request){
-        return ResponseEntity
-                .ok()
-                .body(candidatoService.update(cpf,request));
+    public ResponseEntity<CandidatoResponse> put(@PathVariable("cpf") String cpf,
+                                            @RequestBody CandidatoRequest request
+    ){
+
+        CandidatoResponse response = candidatoService.update(cpf,request);
+
+        return ResponseEntity.ok().body(response);
     }
     
     @GetMapping
-    public ResponseEntity<List<CandidatoDto>> getAll(){
-        return ResponseEntity.ok(candidatoService.getAll());
+    public ResponseEntity<List<CandidatoResponse>> getAll(){
+
+        List<CandidatoResponse> response = candidatoService.getAll();
+
+        return ResponseEntity.ok(response);
     }
-    
+
+    @GetMapping("/{cpf}")
+    public ResponseEntity<CandidatoResponse> getCandidatoByCpf(@PathVariable("cpf") String cpf){
+
+        CandidatoResponse response = candidatoService.getByCpf(cpf);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/filters")
+    public ResponseEntity<List<CandidatoResponse>> getCandidatoByCargoXp(
+            @RequestParam("cargo") String cargo,
+            @RequestParam("tempo") Integer tempo
+    ){
+        List<CandidatoResponse> response = candidatoService
+                .getByExperienciaAndCargo(cargo, tempo);
+
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/filters/{cidade}")
+    public ResponseEntity<List<CandidatoResponse>> getCandidatoByCidade(@PathVariable("cidade") String cidade){
+        List<CandidatoResponse> response = candidatoService
+                .getByCidade(cidade);
+
+        return ResponseEntity.ok(response);
+    }
+
+
     @DeleteMapping(value = "/{cpf}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> deleteCandidato(@PathVariable("cpf") String cpf) {
         if (candidatoService.delete(cpf)) {

@@ -1,4 +1,4 @@
-package com.jobby.core.models.dtos;
+package com.jobby.core.models.requests;
 
 import com.jobby.core.models.entities.candidato.Candidato;
 import com.jobby.core.models.entities.candidato.PretencaoSalarial;
@@ -18,21 +18,18 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CandidatoDto {
+public class CandidatoRequest {
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
     private String email;
     private Telefone telefone;
     private Sexo sexo;
-    private EnderecoDto endereco;
+    private boolean status;
+    private EnderecoRequest endereco;
     private PretencaoSalarial pretencaoSalarial;
     private Profissao profissao;
     private Set<String> habilidades;
-
-    public CandidatoDto(Candidato candidato){
-        BeanUtils.copyProperties(candidato, this);
-    }
     public Candidato toCandidato(){
         Candidato candidato = new Candidato();
         BeanUtils.copyProperties(this, candidato);
