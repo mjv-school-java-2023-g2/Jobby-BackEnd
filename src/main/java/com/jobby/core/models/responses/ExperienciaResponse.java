@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +21,8 @@ public class ExperienciaResponse {
     private Profissao profissao;
     private BigDecimal salario;
     private boolean empregoAtual;
+    private LocalDate dataEntrada;
+    private LocalDate dataDesligamento;
     private Regime regime;
     private String empresa;
     public ExperienciaResponse(Experiencia experiencia) {

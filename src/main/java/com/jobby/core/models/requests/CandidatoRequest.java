@@ -30,10 +30,6 @@ public class CandidatoRequest {
     private PretencaoSalarial pretencaoSalarial;
     private Profissao profissao;
     private Set<String> habilidades;
-
-    public CandidatoRequest(Candidato candidato){
-        BeanUtils.copyProperties(candidato, this);
-    }
     public Candidato toCandidato(){
         Candidato candidato = new Candidato();
         BeanUtils.copyProperties(this, candidato);

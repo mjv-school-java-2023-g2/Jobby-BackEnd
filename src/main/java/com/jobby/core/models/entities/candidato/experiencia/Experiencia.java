@@ -8,8 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -34,6 +36,12 @@ public class Experiencia {
     @Column(name = "regime")
     @Enumerated(EnumType.STRING)
     private Regime regime;
+    @DateTimeFormat(pattern = "yyyy-dd-MM")
+    @Column(name = "dt_entrada")
+    private LocalDate dataEntrada;
+    @DateTimeFormat(pattern = "yyyy-dd-MM")
+    @Column(name = "dt_desligamento")
+    private LocalDate dataDesligamento;
     @NotBlank
     @Column(name = "empresa")
     private String empresa;

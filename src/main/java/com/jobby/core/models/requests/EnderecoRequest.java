@@ -20,10 +20,6 @@ public class EnderecoRequest {
     private String uf;
     private String sigla;
 
-    public EnderecoRequest(Endereco endereco){
-        BeanUtils.copyProperties(endereco, this);
-    }
-
     public Endereco toEndereco(){
         Endereco endereco = new Endereco();
         BeanUtils.copyProperties(this, endereco);
