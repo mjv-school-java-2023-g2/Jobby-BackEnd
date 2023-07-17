@@ -7,6 +7,8 @@ Plataforma que auxilie uma empresa de tecnologia a recrutar e selecionar candida
 
 - [Diagrama de Classe(UML)](https://drive.google.com/file/d/1bcXUxbM-Q67-blts4vE5cOunMZeLsT5L/view?usp=sharing)
 
+- [Swagger](http://localhost:8080/swagger-ui/index.html#)
+
 ## :computer: Tecnologias
 - Java
 - Maven
