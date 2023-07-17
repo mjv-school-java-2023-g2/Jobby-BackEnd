@@ -14,9 +14,9 @@ Desenvolvemos uma plataforma destinada ao armazenamento de dados pessoais e prof
 
 # Tecnologias
 
-Java 17
-Spring Framework
-Postegres
-Spring JPA
-SpringBoot
-Maven
+Java 17,
+Spring Framework,
+Postegres,
+Spring JPA,
+SpringBoot,
+Maven.
