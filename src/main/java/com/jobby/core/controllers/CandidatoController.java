@@ -62,12 +62,19 @@ public class CandidatoController {
     }
 
     @GetMapping("/filters")
-    public ResponseEntity<List<CandidatoResponse>> getCandidatoByCpf(
+    public ResponseEntity<List<CandidatoResponse>> getCandidatoByCargoXp(
             @RequestParam("cargo") String cargo,
             @RequestParam("tempo") Integer tempo
     ){
         List<CandidatoResponse> response = candidatoService
                 .getByExperienciaAndCargo(cargo, tempo);
+
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/filters/{cidade}")
+    public ResponseEntity<List<CandidatoResponse>> getCandidatoByCidade(@PathVariable("cidade") String cidade){
+        List<CandidatoResponse> response = candidatoService
+                .getByCidade(cidade);
 
         return ResponseEntity.ok(response);
     }

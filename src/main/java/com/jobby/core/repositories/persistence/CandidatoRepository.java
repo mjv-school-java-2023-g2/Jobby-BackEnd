@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,4 +23,7 @@ public interface CandidatoRepository extends JpaRepository<Candidato, Integer> {
     List<Candidato> findCandidatosByCargoAndExperiencia(
             @Param("nomeProfissao") String nomeProfissao,
             @Param("anosExperiencia") int anosExperiencia);
+
+    @Query("SELECT c FROM Candidato c JOIN c.endereco e JOIN e.cidade cidade WHERE cidade.nome = :nomeCidade")
+    List<Candidato> findAllByCidade(@Param("nomeCidade") String nomeCidade);
 }

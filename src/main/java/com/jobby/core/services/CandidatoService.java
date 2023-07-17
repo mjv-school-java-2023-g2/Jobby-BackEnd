@@ -61,6 +61,12 @@ public class CandidatoService {
                 .orElseThrow(() -> new NotFoundException("Candidato não existe"));
     }
 
+    public List<CandidatoResponse> getByCidade(String cidade) {
+        return candidatoRepository.findAllByCidade(cidade)
+                .stream().map(CandidatoResponse::new)
+                .toList();
+    }
+
     public List<CandidatoResponse> getByExperienciaAndCargo(String profissao, Integer anos) {
         return candidatoRepository
                 .findCandidatosByCargoAndExperiencia(profissao, anos)
